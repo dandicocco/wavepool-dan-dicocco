@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import strip_tags
 
 DIVESITE_SOURCE_NAMES = {
     'retaildive': 'Retail Dive',
@@ -27,7 +28,7 @@ class NewsPost(models.Model):
 
     @property
     def teaser(self):
-        return self.body[:150]
+        return strip_tags(self.body[:150])
 
     @property
     def source_divesite_name(self):
